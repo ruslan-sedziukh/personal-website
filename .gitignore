@@ -1,0 +1,35 @@
+# Local documentation
+**.ignore**
+
+# Dependencies and package managers
+node_modules/
+.yarn/*
+!.yarn/releases/
+!.yarn/plugins/
+!.yarn/sdks/
+!.yarn/versions/
+.pnp.*
+yarn-error.log
+npm-debug.log*
+
+# Nx
+.nx/cache/
+.nx/workspace-data/
+tmp/
+
+# Build and test output
+dist/
+build/
+.next/
+out/
+coverage/
+*.tsbuildinfo
+
+# Local configuration and secrets
+.env
+.env.local
+.env.*.local
+**/secrets/
+
+# Miscellaneous
+.DS_Store
