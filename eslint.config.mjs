@@ -1,16 +1,41 @@
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-import { FlatCompat } from "@eslint/eslintrc";
+import js from '@eslint/js';
+import globals from 'globals';
+import tseslint from '@typescript-eslint/eslint-plugin';
+import tsParser from '@typescript-eslint/parser';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-});
-
-const eslintConfig = [
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
+export default [
+  {
+    ignores: ['**/.next/**', '**/dist/**', '**/coverage/**', '**/node_modules/**'],
+  },
+  js.configs.recommended,
+  {
+    files: ['**/*.ts', '**/*.tsx', '**/*.js'],
+    languageOptions: {
+      parser: tsParser,
+      parserOptions: {
+        projectService: {
+          allowDefaultProject: ['*.js', 'apps/api/jest.config.ts', 'apps/web/next.config.ts'],
+        },
+        tsconfigRootDir: import.meta.dirname,
+      },
+      globals: {
+        ...globals.node,
+        ...globals.browser,
+      },
+    },
+    plugins: {
+      '@typescript-eslint': tseslint,
+    },
+    rules: {
+      'no-unused-vars': 'off',
+      '@typescript-eslint/consistent-type-imports': 'error',
+      '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
+    },
+  },
+  {
+    files: ['**/*.spec.ts', '**/*.test.ts', 'apps/api/test/**/*.ts'],
+    languageOptions: {
+      globals: globals.jest,
+    },
+  },
 ];
-
-export default eslintConfig;

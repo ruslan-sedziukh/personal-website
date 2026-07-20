@@ -1,30 +1,43 @@
 {
-  "name": "mark-press",
-  "version": "0.1.0",
+  "name": "memica",
   "private": true,
+  "packageManager": "yarn@4.16.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
-    "dev": "next dev --turbopack -p 3001",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "@ruslan-sedziukh/md-parser": "^0.0.10",
-    "@ruslan-sedziukh/md-render": "^0.0.11",
-    "@ruslan-sedziukh/md-types": "^0.0.7",
-    "next": "15.2.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "api:dev": "nx serve api",
+    "web:dev": "nx dev web",
+    "api:db:up": "docker compose --env-file apps/api/.env -f apps/api/docker-compose.yml up -d",
+    "api:db:down": "docker compose --env-file apps/api/.env -f apps/api/docker-compose.yml down",
+    "api:db:reset": "docker compose --env-file apps/api/.env -f apps/api/docker-compose.yml down -v",
+    "build": "nx run-many -t build",
+    "test": "nx run-many -t test",
+    "lint": "nx run-many -t lint",
+    "typecheck": "nx run-many -t typecheck"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3",
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "15.2.0",
-    "tailwindcss": "^4",
-    "typescript": "^5"
+    "@eslint/js": "^9.25.1",
+    "@nestjs/cli": "^11.0.7",
+    "@nestjs/schematics": "^11.0.5",
+    "@nx/eslint": "^20.8.1",
+    "@nx/jest": "^20.8.1",
+    "@nx/js": "^20.8.1",
+    "@nx/nest": "^20.8.1",
+    "@nx/next": "^20.8.1",
+    "@nx/workspace": "^20.8.1",
+    "@swc/core": "^1.11.24",
+    "@types/node": "^22.15.30",
+    "@typescript-eslint/eslint-plugin": "^8.31.1",
+    "@typescript-eslint/parser": "^8.31.1",
+    "eslint": "^9.25.1",
+    "globals": "^16.0.0",
+    "next": "15.2.0",
+    "nx": "^20.8.1",
+    "prettier": "^3.5.3",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "typescript": "^5.8.3"
   }
 }
