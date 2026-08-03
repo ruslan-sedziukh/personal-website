@@ -51,9 +51,9 @@ Authentication and the user-create endpoint were intentionally scaffolded but ne
 
 Remove the public UsersController. Keep User and UsersService as internal persistence for the sole account.
 
-Add a non-selected passwordHash column to User. Keep email unique and normalize it consistently before persistence and login lookup. Remove username; it is not needed for authentication or the single-account profile.
+Keep User limited to its internal id, unique normalized email, non-selected passwordHash, and creation timestamp. Remove username, displayName, and bio; they are not needed for authentication or the single-account model.
 
-Add interactive bootstrap and reset commands that connect through the normal API configuration. Bootstrap prompts for email, display name, bio, password, and password confirmation. It hashes the password with Argon2 before persistence and fails atomically when any account already exists. Reset finds the sole account and atomically replaces only its password hash. Neither command may print, store, or receive a plaintext password through source-controlled configuration.
+Add interactive bootstrap and reset commands that connect through the normal API configuration. Bootstrap prompts for email, password, and password confirmation. It hashes the password with Argon2 before persistence and fails atomically when any account already exists. Reset finds the sole account and atomically replaces only its password hash. Neither command may print, store, or receive a plaintext password through source-controlled configuration.
 
 Add AuthService and AuthController with POST /auth/login and a private POST /auth/logout. Login validates email and password, uses a non-enumerating failure response for bad credentials, signs a JWT containing only the account subject and required JWT claims, and sends it as a Secure, HttpOnly, SameSite=Lax cookie. In production, use the host-only __Host-auth cookie name with Secure and Path=/ and do not set a cookie Domain. The response must not expose password or passwordHash. Logout clears that cookie; it does not revoke an already copied JWT.
 
@@ -67,9 +67,9 @@ This design removes unnecessary public identity flows, avoids the need for an em
 
 - [x] 1. Update apps/api/package.json and yarn.lock with Argon2, Nest JWT, Passport, cookie, and required TypeScript type dependencies. This supplies maintained primitives for hashing, sessions, and cookie parsing. Verified: Argon2 loads at runtime, and API type checking, linting, and tests pass.
 
-- [ ] 2. Update apps/api/.env.example and Auth configuration with JWT_SECRET, JWT_EXPIRES_IN=3d, JWT_ISSUER=memica-api, JWT_AUDIENCE=memica-web, WEB_ORIGIN, secure cookie settings, and configurable login-throttle settings with a default of five failed attempts per fifteen minutes. Use no hard-coded production domain. This keeps deployment-specific values environment-specific. Verify startup fails clearly when required configuration is absent.
+- [x] 2. Update apps/api/.env.example and Auth configuration with JWT_SECRET, JWT_EXPIRES_IN=3d, JWT_ISSUER=memica-api, JWT_AUDIENCE=memica-web, WEB_ORIGIN, secure cookie settings, and configurable login-throttle settings with a default of five failed attempts per fifteen minutes. Use no hard-coded production domain. This keeps deployment-specific values environment-specific. Verify startup fails clearly when required configuration is absent.
 
-- [ ] 3. Update the User entity and UsersService. Add a non-selected passwordHash field, make email the unique normalized login identifier, remove username, and add sole-user lookup, count, atomic bootstrap creation, and password-hash update operations. Verify ordinary reads cannot return passwordHash.
+- [x] 3. Update the User entity and UsersService. Add a non-selected passwordHash field, make email the unique normalized login identifier, remove username, and add sole-user lookup, atomic bootstrap creation, and password-hash update operations. Verify ordinary reads cannot return passwordHash.
 
 - [ ] 4. Remove apps/api/src/users/users.controller.ts and the public user-create and user-list flows. This removes accidental account creation and the unused user-list API. Verify no public registration or generic user endpoint remains.
 
