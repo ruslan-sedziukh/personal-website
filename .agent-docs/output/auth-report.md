@@ -71,7 +71,7 @@ This design removes unnecessary public identity flows, avoids the need for an em
 
 - [x] 3. Update the User entity and UsersService. Add a non-selected passwordHash field, make email the unique normalized login identifier, remove username, and add sole-user lookup, atomic bootstrap creation, and password-hash update operations. Verify ordinary reads cannot return passwordHash.
 
-- [ ] 4. Remove apps/api/src/users/users.controller.ts and the public user-create and user-list flows. This removes accidental account creation and the unused user-list API. Verify no public registration or generic user endpoint remains.
+- [x] 4. Remove apps/api/src/users/users.controller.ts and the public user-create and user-list flows. This removes accidental account creation and the unused user-list API. Verify no public registration or generic user endpoint remains.
 
 - [ ] 5. Add api:auth:bootstrap and api:auth:reset-password command targets. They must use hidden terminal password input, never log plaintext passwords, bootstrap only an empty database, and reset only the single existing account. Verify a second bootstrap cannot create another user, including concurrent attempts.
 

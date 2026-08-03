@@ -31,14 +31,6 @@ yarn api:db:reset  # Stop PostgreSQL and remove its local data volume
 
 Never commit `apps/api/.env`; it contains local configuration and is ignored by Git.
 
-## Current endpoints
-
-```bash
-curl http://localhost:3000/users
-```
-
-`GET /users` returns the current users. The `POST /users` endpoint is scaffold-only: its DTO and entity fields are not yet aligned, and password handling has not been implemented. Do not use it for real user creation until that follow-up work is complete.
-
 ## Workspace commands
 
 Run API-only targets from the repository root:
