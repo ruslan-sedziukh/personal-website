@@ -1,4 +1,4 @@
-# Specs for report
+# Implementation report spec
 
 Before making any implementation changes, investigate the issue and create a Markdown report in the `<agent-docs-directory>/output` directory.
 
@@ -6,7 +6,7 @@ Before making any implementation changes, investigate the issue and create a Mar
 
 Provide a report in the `<agent-docs-directory>/output` directory before implementing anything. 
 
-It should be named `<task-name>-report.md`. You should ask about task name if did no ask already. 
+It should be named `<task-name>-implementation-report.md`. You should ask about task name if did no ask already. 
 
 ## Allowed actions before approval
 

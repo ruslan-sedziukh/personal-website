@@ -73,7 +73,19 @@ This design removes unnecessary public identity flows, avoids the need for an em
 
 - [x] 4. Remove apps/api/src/users/users.controller.ts and the public user-create and user-list flows. This removes accidental account creation and the unused user-list API. Verify no public registration or generic user endpoint remains.
 
-- [ ] 5. Add api:auth:bootstrap and api:auth:reset-password command targets. They must use hidden terminal password input, never log plaintext passwords, bootstrap only an empty database, and reset only the single existing account. Verify a second bootstrap cannot create another user, including concurrent attempts.
+- [x] 5. Add api:auth:bootstrap and api:auth:reset-password command targets. They must use hidden terminal password input, never log plaintext passwords, bootstrap only an empty database, and reset only the single existing account. Verify a second bootstrap cannot create another user, including concurrent attempts.
+
+- [x] 5.1 Add a reusable command runtime that creates and closes a Nest application context without starting the HTTP server. This gives deployment-only commands access to the configured database and UsersService. Verify the command exits cleanly after the application context closes.
+
+- [x] 5.2 Add reusable terminal prompts for email and hidden password entry with confirmation. Validate email and enforce the agreed password policy before hashing. Verify entered passwords are neither echoed nor included in error output.
+
+- [x] 5.3 Implement the bootstrap command. Hash the confirmed password with Argon2id, call createInitialUser, and return a safe success or already-exists result. Verify only the first bootstrap can create an account.
+
+- [x] 5.4 Implement the password-reset command. Require exactly one existing account, hash the confirmed replacement password with Argon2id, and update only passwordHash. Verify the command rejects a missing or invalid multi-user state.
+
+- [x] 5.5 Add api:auth:bootstrap and api:auth:reset-password Nx/package-script targets that execute the compiled deployment-only commands. Verify each command receives terminal input and returns a non-zero exit code for invalid input or failed operations.
+
+- [x] 5.6 Manually verify bootstrap and reset against local Docker PostgreSQL. Confirm a second bootstrap is rejected, the reset does not display credentials, and the database never stores a plaintext password.
 
 - [ ] 6. Implement POST /auth/login and private POST /auth/logout in AuthController and AuthService. Verify passwords using Argon2, sign JWTs with only the account subject plus defined claims and three-day expiry, issue a Secure, HttpOnly, SameSite session cookie, and clear that cookie on logout. Verify failed login does not reveal whether the email exists.
 
