@@ -19,6 +19,17 @@ yarn api:dev
 
 The API listens at `http://localhost:3000`.
 
+## Authentication commands
+
+Run these commands from the repository root after configuring `apps/api/.env` and starting PostgreSQL:
+
+```bash
+yarn api:auth:bootstrap
+yarn api:auth:reset-password
+```
+
+Both commands require an interactive terminal. They prompt for credentials without echoing passwords, never create an HTTP endpoint, and are intended only for someone with deployment or database access.
+
 ## Database commands
 
 Run these commands from the repository root:

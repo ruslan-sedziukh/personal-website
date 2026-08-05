@@ -12,4 +12,4 @@ For all instructions in this task, `<agent-docs-directory>` means `.agent-docs`,
 
 But before, read and follow the list of specs in `<agent-docs-directory>/specs`  first:
 - `basic.spec.md`
-- `implementation-report.spec.md`
+- `investigation-to-implementation-plan-report.spec.md`

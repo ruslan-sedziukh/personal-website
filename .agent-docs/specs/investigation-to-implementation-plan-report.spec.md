@@ -1,4 +1,4 @@
-# Implementation report spec
+# Investigation to implementation plan report spec
 
 Before making any implementation changes, investigate the issue and create a Markdown report in the `<agent-docs-directory>/output` directory.
 
