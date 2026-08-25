@@ -33,7 +33,7 @@ export default [
     },
   },
   {
-    files: ['**/*.spec.ts', '**/*.test.ts', 'apps/api/test/**/*.ts'],
+    files: ['**/*.spec.ts', '**/*.test.ts', 'apps/api/test/**/*.ts', 'apps/api/jest-setup.ts'],
     languageOptions: {
       globals: globals.jest,
     },

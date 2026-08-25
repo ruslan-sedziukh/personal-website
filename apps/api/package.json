@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "@nestjs/testing": "^11.0.12",
+    "@swc/jest": "^0.2.39",
     "@types/cookie-parser": "^1.4.10",
     "@types/express": "^5.0.6",
     "@types/jest": "^29.5.14",
