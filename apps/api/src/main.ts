@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { promptPassword } from './utils/cli/prompt-password.util';
+import { promptPassword } from './utils/cli/prompt-password/prompt-password.util';
 import { CLI_COMMANDS } from './constants/cli-commands.constant';
 
 async function bootstrap() {

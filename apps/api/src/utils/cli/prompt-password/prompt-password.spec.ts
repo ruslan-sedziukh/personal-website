@@ -2,9 +2,9 @@ import { resolve } from 'path';
 import { render } from 'cli-testing-library';
 
 describe('prompt-password', () => {
-  it('Is able to make terminal input and view in-progress stdout', async () => {
+  it('hides password', async () => {
     const { clear, findByText, queryByText, userEvent } = await render('node', [
-      resolve(__dirname, './execute-scripts/stdio-inquirer.js'),
+      resolve(__dirname, './prompt-password.util/ts'),
     ]);
 
     const instance = await findByText('First option');
@@ -15,7 +15,7 @@ describe('prompt-password', () => {
 
     clear();
 
-    userEvent('[ArrowDown]');
+    userEvent.keyboard('[ArrowDown]');
 
     expect(await findByText('❯ Two')).toBeInTheConsole();
 
