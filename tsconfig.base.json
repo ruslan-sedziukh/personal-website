@@ -12,9 +12,7 @@
     "declaration": true,
     "sourceMap": true,
     "paths": {
-      "@memica/shared": [
-        "./packages/shared/src/index.ts"
-      ]
+      "shared": ["./packages/shared/src/index.ts"]
     }
   }
 }
