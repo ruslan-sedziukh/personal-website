@@ -1,5 +1,5 @@
 {
-  "name": "memica",
+  "name": "personal-website",
   "private": true,
   "packageManager": "yarn@4.16.0",
   "workspaces": [

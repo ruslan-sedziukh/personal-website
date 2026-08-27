@@ -1,6 +1,6 @@
-# Memica API
+# API
 
-The Memica API is a NestJS application managed by the repository's Yarn and Nx workspace. PostgreSQL runs in Docker during local development; the API runs on the host for fast reload and debugging.
+Current application is a NestJS application managed by the repository's Yarn and Nx workspace. PostgreSQL runs in Docker during local development; the API runs on the host for fast reload and debugging.
 
 ## Local development
 

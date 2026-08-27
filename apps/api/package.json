@@ -1,5 +1,5 @@
 {
-  "name": "@memica/api",
+  "name": "api",
   "private": true,
   "dependencies": {
     "@memica/shared": "workspace:*",
