@@ -1,5 +1,7 @@
 # Naming Conventions
 
+## Main principle
+
 Use the same conventions across the monorepo unless a framework has a stronger convention.
 
 ## General

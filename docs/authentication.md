@@ -2,7 +2,7 @@
 
 ## Decision
 
-Memica uses **single-account, email-and-password authentication**. The account is created and maintained through deployment-only interactive commands, rather than through a public registration or password-recovery flow.
+This project uses **single-account, email-and-password authentication**. The account is created and maintained through deployment-only interactive commands, rather than through a public registration or password-recovery flow.
 
 The email is the sole login identifier. There are no usernames, roles, permissions, or separate administrator accounts: the only authenticated account has access to every protected API capability.
 
