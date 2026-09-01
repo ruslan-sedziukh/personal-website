@@ -6436,6 +6436,7 @@ __metadata:
     cli-testing-library: "npm:^4.0.0"
     cookie-parser: "npm:^1.4.7"
     jest: "npm:^29.7.0"
+    node-pty: "npm:^1.1.0"
     passport: "npm:^0.7.0"
     passport-jwt: "npm:^4.0.1"
     pg: "npm:^8.16.0"
@@ -12931,7 +12932,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-addon-api@npm:^7.0.0":
+"node-addon-api@npm:^7.0.0, node-addon-api@npm:^7.1.0":
   version: 7.1.1
   resolution: "node-addon-api@npm:7.1.1"
   dependencies:
@@ -13026,6 +13027,16 @@ __metadata:
   version: 1.1.12
   resolution: "node-machine-id@npm:1.1.12"
   checksum: 10c0/ab2fea5f75a6f1ce3c76c5e0ae3903b631230e0a99b003d176568fff8ddbdf7b2943be96cd8d220c497ca0f6149411831f8a450601929f326781cb1b59bab7f8
+  languageName: node
+  linkType: hard
+
+"node-pty@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "node-pty@npm:1.1.0"
+  dependencies:
+    node-addon-api: "npm:^7.1.0"
+    node-gyp: "npm:latest"
+  checksum: 10c0/e527305263da36d554b7d2116aee6430b898675fc50e7bd82fbd762f14cb6b948fb8d997736af1f70d76bf9ffd4f5179bc1ed1d8002567dfcf3b29f039291798
   languageName: node
   linkType: hard
 

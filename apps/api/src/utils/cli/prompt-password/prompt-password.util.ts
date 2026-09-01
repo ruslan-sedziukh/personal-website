@@ -9,7 +9,7 @@ export async function promptPassword() {
     properties: {
       password: {
         message: 'password',
-        // hidden: true,
+        hidden: true,
       },
     },
   });
