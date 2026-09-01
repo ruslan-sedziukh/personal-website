@@ -2,10 +2,6 @@
 
 ## Changes
 
-## Behavior
-
-## Technical Debt
-
 ## Checks
 
 - [ ] Tests pass locally (`yarn test`)
