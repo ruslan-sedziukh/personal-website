@@ -3,7 +3,7 @@ import * as pty from 'node-pty';
 
 const promptScript = resolve(__dirname, './test-prompt-password.ts');
 
-const TIMEOUT = 1_000;
+const defaultTimeoutMs = 1_000;
 
 function startPrompt(expectedPassword?: string) {
   const promptProcess = pty.spawn('ts-node', [promptScript], {
@@ -12,9 +12,6 @@ function startPrompt(expectedPassword?: string) {
       ...process.env,
       EXPECTED_PASSWORD: expectedPassword ?? '',
     },
-    name: 'xterm-color',
-    cols: 80,
-    rows: 24,
   });
 
   let output = '';
@@ -42,7 +39,7 @@ function startPrompt(expectedPassword?: string) {
 async function waitForOutput(
   getOutput: () => string,
   text: string,
-  timeout = TIMEOUT,
+  timeout = defaultTimeoutMs,
 ) {
   const deadline = Date.now() + timeout;
 
@@ -60,7 +57,7 @@ async function waitForOutput(
 
 async function waitForExit(
   exit: Promise<{ exitCode: number }>,
-  timeout = TIMEOUT,
+  timeout = defaultTimeoutMs,
 ) {
   return Promise.race([
     exit,
