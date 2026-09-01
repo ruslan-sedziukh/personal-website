@@ -1,6 +1,6 @@
-# Commit and PR conventions
+# Commit and PR convention
 
-## Commit message conventions
+## Commit message
 
 A good general rule is: write both commit messages and PR titles as short imperative descriptions of the change—as if completing the sentence:
 
@@ -19,7 +19,7 @@ Prefer imperative mood (Add, Fix, Update, Remove, Refactor) rather than past ten
 - ✅ Fix dropdown positioning
 - ⚠️ Fixed dropdown positioning
 
-## PR description convention
+## PR description
 
 For PR descriptions, the rule is different from commit messages and PR titles.
 
