@@ -1,5 +1,5 @@
 {
-  "name": "memica",
+  "name": "personal-website",
   "private": true,
   "packageManager": "yarn@4.16.0",
   "workspaces": [
@@ -12,6 +12,8 @@
     "api:db:up": "docker compose --env-file apps/api/.env -f apps/api/docker-compose.yml up -d",
     "api:db:down": "docker compose --env-file apps/api/.env -f apps/api/docker-compose.yml down",
     "api:db:reset": "docker compose --env-file apps/api/.env -f apps/api/docker-compose.yml down -v",
+    "api:auth:bootstrap": "tsc --project apps/api/tsconfig.app.json && node dist/apps/api/main.js auth:bootstrap",
+    "api:auth:reset-password": "tsc --project apps/api/tsconfig.app.json && node dist/apps/api/main.js auth:reset-password",
     "build": "nx run-many -t build",
     "test": "nx run-many -t test",
     "lint": "nx run-many -t lint",

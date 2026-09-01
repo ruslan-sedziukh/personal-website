@@ -1,6 +1,6 @@
-# Memica Web
+# Web
 
-The Memica web application is a Next.js project managed by the repository's Yarn and Nx workspace.
+Current web application is a Next.js project managed by the repository's Yarn and Nx workspace.
 
 ## Development
 

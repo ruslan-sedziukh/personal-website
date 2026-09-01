@@ -1,6 +1,6 @@
-# Memica API
+# API
 
-The Memica API is a NestJS application managed by the repository's Yarn and Nx workspace. PostgreSQL runs in Docker during local development; the API runs on the host for fast reload and debugging.
+Current application is a NestJS application managed by the repository's Yarn and Nx workspace. PostgreSQL runs in Docker during local development; the API runs on the host for fast reload and debugging.
 
 ## Local development
 
@@ -19,6 +19,17 @@ yarn api:dev
 
 The API listens at `http://localhost:3000`.
 
+## Authentication commands
+
+Run these commands from the repository root after configuring `apps/api/.env` and starting PostgreSQL:
+
+```bash
+yarn api:auth:bootstrap
+yarn api:auth:reset-password
+```
+
+Both commands require an interactive terminal. They prompt for credentials without echoing passwords, never create an HTTP endpoint, and are intended only for someone with deployment or database access.
+
 ## Database commands
 
 Run these commands from the repository root:
@@ -30,14 +41,6 @@ yarn api:db:reset  # Stop PostgreSQL and remove its local data volume
 ```
 
 Never commit `apps/api/.env`; it contains local configuration and is ignored by Git.
-
-## Current endpoints
-
-```bash
-curl http://localhost:3000/users
-```
-
-`GET /users` returns the current users. The `POST /users` endpoint is scaffold-only: its DTO and entity fields are not yet aligned, and password handling has not been implemented. Do not use it for real user creation until that follow-up work is complete.
 
 ## Workspace commands
 

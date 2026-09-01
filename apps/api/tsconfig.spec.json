@@ -2,7 +2,8 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "../../dist/out-tsc/apps/api-spec",
-    "types": ["jest", "node"]
+    "types": ["jest", "node"],
+    "typeRoots": ["../../node_modules/@types"]
   },
-  "include": ["src/**/*.spec.ts", "test/**/*.ts"]
+  "include": ["jest-setup.ts", "src/**/*.spec.ts", "test/**/*.ts"]
 }

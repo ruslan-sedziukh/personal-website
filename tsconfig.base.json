@@ -11,11 +11,8 @@
     "resolveJsonModule": true,
     "declaration": true,
     "sourceMap": true,
-    "baseUrl": ".",
     "paths": {
-      "@memica/shared": [
-        "packages/shared/src/index.ts"
-      ]
+      "shared": ["./packages/shared/src/index.ts"]
     }
   }
 }
