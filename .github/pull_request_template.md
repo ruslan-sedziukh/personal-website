@@ -1,7 +1,5 @@
 ## Overview
 
-## Changes
-
 ## Checks
 
 - [ ] Tests pass locally (`yarn test`)
