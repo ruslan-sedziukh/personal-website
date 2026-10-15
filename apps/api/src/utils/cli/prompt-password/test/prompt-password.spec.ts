@@ -6,7 +6,7 @@ const promptScript = resolve(__dirname, './test-prompt-password.ts');
 const defaultTimeoutMs = 1_000;
 
 const startPrompt = (expectedPassword?: string) => {
-  const promptProcess = pty.spawn('ts-node', [promptScript], {
+  const promptProcess = pty.spawn('node', [promptScript], {
     cwd: process.cwd(),
     env: {
       ...process.env,
@@ -51,7 +51,7 @@ const waitForOutput = async (
       );
     }
 
-    await new Promise((resolve) => setTimeout(resolve, 10));
+    await new Promise((resolve) => setTimeout(resolve, 50));
   }
 };
 
@@ -74,6 +74,7 @@ describe('promptPassword', () => {
     const prompt = startPrompt();
 
     try {
+      // getOutput is called in the while loop while output do not match 'password' or timeout passes
       await waitForOutput(prompt.getOutput, 'password');
 
       expect(prompt.getOutput()).toContain('password');
