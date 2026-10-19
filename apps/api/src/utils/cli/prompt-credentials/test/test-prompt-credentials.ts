@@ -1,8 +1,8 @@
 // @ts-ignore: `.ts` extension is here intentionally. Test fails without it
-import { promptPassword } from '../prompt-password.util.ts';
+import { promptCredentials } from '../prompt-credentials.util.js';
 
 async function main() {
-  const password = await promptPassword();
+  const { password } = await promptCredentials();
   const expectedPassword = process.env.EXPECTED_PASSWORD;
 
   if (password !== expectedPassword) {
