@@ -2,8 +2,9 @@ import { startPrompt, waitForExit, waitForOutput } from './utils';
 
 describe('promptPassword', () => {
   it('correctly ask and return data', async () => {
-    const prompt = startPrompt();
     const password = 'asdasd';
+    // Pass `password` so `exit` will resolve with `exitCode` 0 when password match
+    const prompt = startPrompt(password);
     const email = 'john.doe@test.com';
 
     try {
@@ -22,7 +23,6 @@ describe('promptPassword', () => {
 
       prompt.process.write(`${password}\r`);
 
-      // Why this exit code is `1`?
       await expect(waitForExit(prompt.exit)).resolves.toEqual({
         exitCode: 0,
       });
