@@ -5,16 +5,11 @@ export async function promptCredentials() {
   prompt.message = '';
   prompt.delimiter = ':';
 
-  const { email } = await prompt.get({
+  const { email, password } = await prompt.get({
     properties: {
-      password: {
+      email: {
         message: 'email',
       },
-    },
-  });
-
-  const { password } = await prompt.get({
-    properties: {
       password: {
         message: 'password',
         hidden: true,

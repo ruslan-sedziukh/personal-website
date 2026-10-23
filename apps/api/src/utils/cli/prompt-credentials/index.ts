@@ -1,1 +1,1 @@
-export { promptCredentials } from './prompt-credentials.util';
+export { promptCredentials } from './prompt-credentials';
