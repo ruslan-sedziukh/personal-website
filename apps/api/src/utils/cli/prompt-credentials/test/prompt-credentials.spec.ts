@@ -22,12 +22,12 @@ describe('promptPassword', () => {
 
       prompt.process.write(`${password}\r`);
 
-      expect(prompt.getOutput()).not.toContain(password);
-
       // Why this exit code is `1`?
       await expect(waitForExit(prompt.exit)).resolves.toEqual({
         exitCode: 0,
       });
+
+      expect(prompt.getOutput()).not.toContain(password);
     } finally {
       if (!prompt.isExited()) {
         prompt.process.kill();
