@@ -5,13 +5,20 @@ const promptScript = resolve(__dirname, './test-prompt-credentials.ts');
 
 const defaultTimeoutMs = 1_000;
 
-// `expectedPassword` allows to check where received password is what we expected. Check `./test-prompt-credentials.ts`.
-export const startPrompt = (expectedPassword?: string) => {
+// `expectedPassword` and `expectedEmail` allows to check where received credentials is what we expected. Check `./test-prompt-credentials.ts`.
+export const startPrompt = ({
+  expectedPassword,
+  expectedEmail,
+}: {
+  expectedPassword: string;
+  expectedEmail: string;
+}) => {
   const promptProcess = pty.spawn('node', [promptScript], {
     cwd: process.cwd(),
     env: {
       ...process.env,
-      ...(expectedPassword ? { EXPECTED_PASSWORD: expectedPassword } : {}),
+      EXPECTED_EMAIL: expectedEmail,
+      EXPECTED_PASSWORD: expectedPassword,
     },
   });
 

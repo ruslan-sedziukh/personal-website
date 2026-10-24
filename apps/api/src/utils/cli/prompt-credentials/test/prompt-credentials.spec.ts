@@ -3,9 +3,12 @@ import { startPrompt, waitForExit, waitForOutput } from './utils';
 describe('promptPassword', () => {
   it('correctly ask and return data', async () => {
     const password = 'asdasd';
-    // Pass `password` so `exit` will resolve with `exitCode` 0 when password match
-    const prompt = startPrompt();
     const email = 'john.doe@test.com';
+
+    const prompt = startPrompt({
+      expectedEmail: email,
+      expectedPassword: password,
+    });
 
     try {
       // getOutput is called in the while loop while output do not match 'email' or timeout passes
