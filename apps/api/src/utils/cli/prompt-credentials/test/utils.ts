@@ -1,16 +1,24 @@
 import { resolve } from 'path';
 import * as pty from 'node-pty';
 
-const promptScript = resolve(__dirname, './test-prompt-password.ts');
+const promptScript = resolve(__dirname, './test-prompt-credentials.ts');
 
 const defaultTimeoutMs = 1_000;
 
-const startPrompt = (expectedPassword?: string) => {
+// `expectedPassword` and `expectedEmail` allows to check where received credentials is what we expected. Check `./test-prompt-credentials.ts`.
+export const startPrompt = ({
+  expectedPassword,
+  expectedEmail,
+}: {
+  expectedPassword: string;
+  expectedEmail: string;
+}) => {
   const promptProcess = pty.spawn('node', [promptScript], {
     cwd: process.cwd(),
     env: {
       ...process.env,
-      EXPECTED_PASSWORD: expectedPassword ?? '',
+      EXPECTED_EMAIL: expectedEmail,
+      EXPECTED_PASSWORD: expectedPassword,
     },
   });
 
@@ -36,7 +44,7 @@ const startPrompt = (expectedPassword?: string) => {
   };
 };
 
-const waitForOutput = async (
+export const waitForOutput = async (
   getOutput: () => string,
   text: string,
   timeout = defaultTimeoutMs,
@@ -55,7 +63,7 @@ const waitForOutput = async (
   }
 };
 
-const waitForExit = async (
+export const waitForExit = async (
   exit: Promise<{ exitCode: number }>,
   timeout = defaultTimeoutMs,
 ) => {
@@ -68,41 +76,3 @@ const waitForExit = async (
     }),
   ]);
 };
-
-describe('promptPassword', () => {
-  it('asks for a password', async () => {
-    const prompt = startPrompt();
-
-    try {
-      // getOutput is called in the while loop while output do not match 'password' or timeout passes
-      await waitForOutput(prompt.getOutput, 'password');
-
-      expect(prompt.getOutput()).toContain('password');
-    } finally {
-      if (!prompt.isExited()) {
-        prompt.process.kill();
-      }
-    }
-  });
-
-  it('returns the entered password without echoing it', async () => {
-    const password = 'asdasd';
-    const prompt = startPrompt(password);
-
-    try {
-      await waitForOutput(prompt.getOutput, 'password');
-
-      prompt.process.write(`${password}\r`);
-
-      await expect(waitForExit(prompt.exit)).resolves.toEqual({
-        exitCode: 0,
-      });
-
-      expect(prompt.getOutput()).not.toContain(password);
-    } finally {
-      if (!prompt.isExited()) {
-        prompt.process.kill();
-      }
-    }
-  });
-});
