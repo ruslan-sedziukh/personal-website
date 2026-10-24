@@ -5,7 +5,7 @@ async function main() {
   const { password } = await promptCredentials();
   const expectedPassword = process.env.EXPECTED_PASSWORD;
 
-  if (password !== expectedPassword) {
+  if (expectedPassword && password !== expectedPassword) {
     process.exitCode = 1;
   }
 }

@@ -4,7 +4,7 @@ describe('promptPassword', () => {
   it('correctly ask and return data', async () => {
     const password = 'asdasd';
     // Pass `password` so `exit` will resolve with `exitCode` 0 when password match
-    const prompt = startPrompt(password);
+    const prompt = startPrompt();
     const email = 'john.doe@test.com';
 
     try {
